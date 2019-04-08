@@ -13,9 +13,9 @@
 
 # Подсказка: воспользоваться методом .format()
 
-#lst = ["яблоко", "банан", "киви", "арбуз"]
-#for index, value in enumerate(lst, 1):
-#    print("{}.{:>10}".format(index, value))
+lst = ["яблоко", "банан", "киви", "арбуз"]
+for index, value in enumerate(lst, 1):
+    print("{}.{:>10}".format(index, value))
 
 
 
@@ -23,12 +23,12 @@
 # Даны два произвольные списка.
 # Удалите из первого списка элементы, присутствующие во втором списке.
 
-lst1 = [1,2,3,4,5]
-lst2 = [3,4,5,6,7,8]
+lst1 = [3, 4, 5, 8, 7, 9, 11, 13]
+lst2 = [4, 5, 6, 8, 11]
 
-for elem in lst1:
-    if elem in lst2:
-        lst1.remove(elem)
+for elem in lst2:
+    if elem in lst1:
+            lst1.remove(elem)
 print(lst1)
 
 
@@ -37,3 +37,12 @@ print(lst1)
 # Дан произвольный список из целых чисел.
 # Получите НОВЫЙ список из элементов исходного, выполнив следующие условия:
 # если элемент кратен двум, то разделить его на 4, если не кратен, то умножить на два.
+
+lst1 = [1,3,5,8,9,13,16]
+lst2 = []
+for digit in lst1:
+    if digit % 2 == 0:
+        lst2.append(digit / 4)
+    else:
+        lst2.append(digit * 2)
+print(lst2)
