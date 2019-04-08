@@ -5,6 +5,22 @@ equation = 'y = -12x + 11111140.2121'
 x = 2.5
 # вычислите и выведите y
 
+equation = 'y = -12x + 11111140.2121'
+x = 2.5
+# вычислите и выведите y
+
+eq = equation.split()
+print(eq)
+x = float(x)
+y = 0
+tmp_var = float(eq[2][:-1])
+if eq[3] == '+':
+    y = tmp_var*x + float(eq[4])
+else:
+    y = tmp_var*x - float(eq[4])
+
+print(y)
+
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
 # Проверить, корректно ли введена дата.
