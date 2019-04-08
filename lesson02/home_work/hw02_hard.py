@@ -44,11 +44,13 @@ date_format = date.split('.')
 day = date_format[0]
 month = date_format[1]
 year = date_format[2]
-month_list = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
-
+month_31 = ['01', '03', '05', '07', '08', '10', '12']
+month_30 = ['02', '04', '06', '09', '11']
 
 if len(day) == 2 and len(month) == 2 and len(year) == 4:
-    if 1 <= int(date_format[0]) <= 31 and month in month_list and 1 <= int(year) <= 9999:
+    if month in month_31 and 1 <= int(day) <= 31 and 1 <= int(year) <= 9999:
+        print('Дата введена корректно')
+    elif month in month_30 and 1 <= int(day) <= 30 and 1 <= int(year) <= 9999:
         print('Дата введена корректно')
     else:
         print('Дата некорректна')
