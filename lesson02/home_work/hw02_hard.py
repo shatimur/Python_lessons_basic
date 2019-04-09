@@ -86,3 +86,52 @@ else:
 #
 # Вход: 11
 # Выход: 5 3
+
+cell_lst = [ i*i for i in range(1,10)]  # создаем список распределения блоков этажей
+lvl_lst = [i for i in range(1,10)] # создаем список соответствия количеству этажей и комнат в каждом блоке
+print(cell_lst)
+print(lvl_lst)
+
+room = 13       # номер комнаты, позицию которой мы ищем.
+number = 0           # Промежуточная переменная, которая указывает нам на блок, где искомая комната. Как только эта величина
+# превышает номер искомой комнаты, значит этот блок найден и мы обращаемся к его номеру (count)
+count = 0
+for cell in cell_lst:
+    number += cell
+    count += 1
+    if number >= room:
+        break
+#print(number)
+print('Номер блока, где нужная комната, он же количество этажей в блоке и количество комнат на этаже: ' + str(count))
+
+slice_cell_lst = cell_lst[:count]
+print(slice_cell_lst) # сумма чисел этого списка дает номер последней комнаты в нужно нам блоке
+
+last_room = sum(slice_cell_lst)
+print('Последняя комната в нужном нам блоке имеет номер: ' + str(last_room))
+
+first_room = last_room - slice_cell_lst[-1] + 1
+print('Первая комната в  блоке имеет номер: ' + str(first_room))
+
+before_lvl_number = sum(lvl_lst[:(count - 1)])
+print('Этажей до блока: ' + str(before_lvl_number))
+
+inner_lvl = 1 # внутренний этаж в блоке, минимум 1 его потом нужно сложить с before_lvl_number
+end = first_room + count
+
+for j in range(count):
+    lst = range(first_room, end)
+    if room in lst:
+        inner_room_place = lst.index(room) +1
+        print('Положение комнаты на этаже: ' + str(inner_room_place))
+        break
+    first_room += count
+    end += count
+    inner_lvl += 1
+final_lvl = inner_lvl + before_lvl_number
+print('Комната находится на этаже: ' + str(final_lvl))
+
+print('#################################################')
+
+print(' Вход: ', room)
+print('Выход: ', str(final_lvl), str(inner_room_place))
