@@ -23,9 +23,19 @@ print(my_round(2.9999967, 5))
 # Билет считается счастливым, если сумма его первых и последних цифр равны.
 # !!!P.S.: функция не должна НИЧЕГО print'ить
 
-def lucky_ticket(ticket_number):
-    pass
+### В условии задачи следует уточнить, каких именно первых и последних цифр.
 
+def lucky_ticket(ticket_number):
+    half1 = str(ticket_number)[:3]
+    half2 = str(ticket_number)[3:]
+    a = map(int, half1)
+    b = map(int, half2)
+    sum1 = sum(a)
+    sum2 = sum(b)
+    if sum1 == sum2:
+        return 'Билет счастливый'
+    else:
+        return 'Билет не счастливый'
 
 print(lucky_ticket(123006))
 print(lucky_ticket(12321))
