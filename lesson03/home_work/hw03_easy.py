@@ -5,7 +5,11 @@
 # Для решения задачи не используйте встроенные функции и функции из модуля math.
 
 def my_round(number, ndigits):
-    pass
+    number_round = int(number * 10**5)/(10**5)
+    last_digit = str(number_round)[-1]
+    if int(last_digit) >= 5:
+        number_round += 0.00001
+    return number_round
 
 
 print(my_round(2.1234567, 5))
