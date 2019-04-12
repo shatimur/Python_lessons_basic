@@ -46,13 +46,20 @@ print(sort_to_max(origin_list))
 # Напишите собственную реализацию стандартной функции filter.
 # Разумеется, внутри нельзя использовать саму функцию filter.
 
-def my_filter(func(), seq:
+seq = []
+def my_filter(func, seq):
     filtered_lst = []
     for itm in seq:
         if func(itm):
             filtered_lst.append(itm)
-    return(filtered_lst)
+    return filtered_lst
+
 # Задача-4:
 # Даны четыре точки А1(х1, у1), А2(x2 ,у2), А3(x3 , у3), А4(х4, у4).
 # Определить, будут ли они вершинами параллелограмма.
 
+def parall(x1, y1, x2, y2, x3, y3, x4, y4):
+    if abs(x1-x2) == abs(x3-x4) and abs(y1-y2) == abs(y3-y4):
+        print("Это вершины параллелограмма")
+    else:
+        print("Эти вершины не образуют параллелограмм")
