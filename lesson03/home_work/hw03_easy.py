@@ -26,12 +26,8 @@ print(my_round(2.9999967, 5))
 ### В условии задачи следует уточнить, каких именно первых и последних цифр.
 
 def lucky_ticket(ticket_number):
-    half1 = str(ticket_number)[:3]
-    half2 = str(ticket_number)[3:]
-    a = map(int, half1)
-    b = map(int, half2)
-    sum1 = sum(a)
-    sum2 = sum(b)
+    sum1 = sum(map(int, str(ticket_number)[:3]))
+    sum2 = sum(map(int, str(ticket_number)[3:]))
     if sum1 == sum2:
         return 'Билет счастливый'
     else:
