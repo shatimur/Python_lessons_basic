@@ -17,7 +17,12 @@ lst = ["яблоко", "банан", "киви", "арбуз"]
 for index, value in enumerate(lst, 1):
     print("{}.{:>10}".format(index, value))
 
-
+# вариант как в уроке:                      # список автоматически выбирает нужный отступ
+lst = ["яблоко", "банан", "киви", "арбуз"]
+max_len = len(max(lst))
+for index, value in enumerate(lst, start=1):
+    string = "{}{:>}".format(" "*(max_len - len(value)), value)
+    print("{}.{}".format(index, string))
 
 # Задача-2:
 # Даны два произвольные списка.
@@ -27,11 +32,18 @@ lst1 = [3, 4, 5, 8, 7, 9, 11, 13]
 lst2 = [4, 5, 6, 8, 11]
 
 for elem in lst2:
-    if elem in lst1:
+    if elem in lst1:            # вместо if лучше while, чтобы не осталось задвоенных елементов, например если некоторые цифры по 2-3 раза встречаются
             lst1.remove(elem)
 print(lst1)
 
+#
+# вариант как в уроке:
 
+# если не нужно сохранять дубликаты элементов, то можно использовать set
+
+dif_lst = set(lst1) - set(lst2)
+# либо
+dif_lst = set(lst1).difference(set(lst2))
 
 # Задача-3:
 # Дан произвольный список из целых чисел.
@@ -41,7 +53,7 @@ print(lst1)
 lst1 = [1,3,5,8,9,13,16]
 lst2 = []
 for digit in lst1:
-    if digit % 2 == 0:
+    if digit % 2 == 0:              # здесь правильнее if digit % 2:
         lst2.append(digit / 4)
     else:
         lst2.append(digit * 2)
