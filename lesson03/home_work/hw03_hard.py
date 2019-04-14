@@ -9,79 +9,80 @@
 # Ввод: -2/3 - -2
 # Вывод: 1 1/3
 
-ex = "-2/3 + -2"
+ex = "5/6 + 4/7"
 
+    # Определяем функции, которые нам понадобятся для решения:
 
-# Определяем функции, которые нам понаобятся для решения:
-
-def check_whole(fraction):
-    if " " in fraction and "/" in fraction:
-        n = fraction.split()[0]  # выделяем целое
-        x = (fraction.split()[1]).split('/')[0]  # выделяем числитель
-        y = (fraction.split()[1]).split('/')[1]  # выделяем знаменатель
-    elif "/" not in fraction:
+def check_whole(fraction):  # здесь работаем с отдельной дробью
+    if " " in fraction and "/" in fraction:         # если есть и целая, и дробная часть
+        n = fraction.split()[0]                   # выделяем целое
+        x = (fraction.split()[1]).split('/')[0]   # выделяем числитель
+        y = (fraction.split()[1]).split('/')[1]   # выделяем знаменатель
+    elif "/" not in fraction:                       # если только целая часть
         n = fraction
         x = 0
-        y = 0
-    else:
+        y = 1
+    else:                                           # если только дробная часть
         n = 0
         x = fraction.split('/')[0]
         y = fraction.split('/')[1]
     lst = [n, x, y]
-    int_lst = list(map(int, lst))
+    int_lst = list(map(abs, map(int, lst)))
     return int_lst
 
-
-def assign_func(ex_mod):  # функция возвращает листы переменных из исходного выражения (ex)
-
-    lst_1 = check_whole(ex_mod[0])
-    lst_2 = check_whole(ex_mod[1])
-    return lst_1, lst_2
-
-
-def nod(a, b):  # функция наибольший общий делитель
+def nod(a, b):                      # функция наибольший общий делитель
+    a = abs(a)
+    b = abs(b)
     while a != 0 and b != 0:
         if a > b:
             a %= b
         else:
             b %= a
-    return a + b
+    return a + b                       # одно из слагаемых здесь 0, поэтому для получения второго нод, можно просто их сложить и не писать if
 
-
-if '+' in ex:  # ВЕТКА 1 ОСНОВНОГО КОДА
-    ex_mod = ex.split(" + ")  # делим исходное выражение по оператору на список из 2 выражений
-    lst_1 = check_whole(ex_mod[0])
-    n1 = lst_1[0]
-    x1 = lst_1[1]
-    y1 = lst_1[2]
-
-    lst_2 = check_whole(ex_mod[1])
-    n2 = lst_2[0]
-    x2 = lst_2[1]
-    y2 = lst_2[2]
-
-    whole_sum = n1 + n2
-    numerator = x1 * y2 + x2 * y1
-    denominator = y1 * y2
-    f_nod = nod(numerator, denominator)
-    if y1 != 0 and y2 != 0:
-        add_whole = numerator // denominator
-        final_denom = denominator / f_nod
-        final_num = (numerator - denominator * add_whole) / f_nod
+def plus_minus(expr):                   # знак перед дробью
+    if "-" in expr:
+        k = -1
     else:
-        add_whole = 0
-        final_num = numerator / f_nod
-        final_denom = denominator / f_nod
-    main_whole = whole_sum + add_whole
+        k = 1
+    return k
+
+def whole(numerator, denominator):      # определяем целое с сохранением знака. без такой функции целочисленное деление с отриц.числами работает странно
+    if numerator < 0:
+        a = (abs(numerator) // denominator)*(-1)
+    else:
+        a = numerator // denominator
+    return a
+
+if '+' in ex:
+    ex_mod = ex.split(" + ")
+    sign = 1                        # знак между дробями - сложение или вычитание
+else:
+    ex_mod = ex.split(" - ")
+    sign = -1
+
+lst_1 = check_whole(ex_mod[0])
+k1 = plus_minus(ex_mod[0])
+n1 = abs(lst_1[0])
+x1 = abs(lst_1[1])
+y1 = lst_1[2]
+
+lst_2 = check_whole(ex_mod[1])
+k2 = plus_minus(ex_mod[1])
+n2 = abs(lst_2[0])
+x2 = abs(lst_2[1])
+y2 = lst_2[2]
+
+numerator = k1*(n1*y1 + x1)*y2 + sign *k2*(n2*y2 + x2)*y1
+denominator = y1*y2
 
 
-else:  # ВЕТКА 2 ОСНОВНОГО КОДА
-    pass
+whole = whole(numerator, denominator)
+f_nod = nod(abs(numerator), denominator)
+num_frac = int((abs(numerator) % denominator)/f_nod)
 
-print(main_whole, int(final_num), '/', int(final_denom))
+print(whole, num_frac, '/', denominator)
 
-# написать упрощение чеерз НОД и без пробелов при выводе ответа
-print(gcd(numerator, denominator))
 
 
 # Задание-2:
