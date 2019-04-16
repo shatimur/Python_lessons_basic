@@ -30,17 +30,13 @@ origin_list = [2, 10, -12, 2.5, 20, -11, 4, 4, 0]
 
 def sort_to_max(origin_list):
         a = origin_list             # для сокращения записи индексов вводим временную переменную
-        for j in range(0,len(a)-1):
+        for j in range(0, len(a)-1):
             for i in range(0, len(a)-1-j):
                 if a[i] > a[i+1]:
                     a[i], a[i+1] = a[i+1], a[i]
         return origin_list
 
 print(sort_to_max(origin_list))
-
-# Задача-3:
-# Напишите собственную реализацию стандартной функции filter.
-# Разумеется, внутри нельзя использовать саму функцию filter.
 
 # Задача-3:
 # Напишите собственную реализацию стандартной функции filter.
