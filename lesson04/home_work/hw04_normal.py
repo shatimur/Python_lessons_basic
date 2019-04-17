@@ -73,7 +73,7 @@ line_2 = 'mtMmEZUOmcqWiryMQhhTxqKdSTKCYEJlEZCsGAMkgAYEOmHBSQsSUHKvSfbmxULaysm'\
 
 # решение 1
 new_line = []
-for i in range(2, len(line_2)):
+for i in range(2, len(line_2)-2):
     if line_2[i-2:i].islower() and line_2[i:i+2].isupper():    # находим первое выполнение условий
         while line_2[i+2].isupper():       # проверяем дальше на выполнение условий
             new_line.append(line_2[i])
@@ -104,12 +104,36 @@ print(small2)
 # Найдите и выведите самую длинную последовательность одинаковых цифр
 # в вышезаполненном файле.
 
+# Задание-3:
+# Напишите скрипт, заполняющий указанный файл (самостоятельно задайте имя файла)
+# произвольными целыми цифрами, в результате в файле должно быть
+# 2500-значное произвольное число.
+# Найдите и выведите самую длинную последовательность одинаковых цифр
+# в вышезаполненном файле.
+
 import os
 import random
 
-random.randint(-100, 100)
-digits = []
-path = os.path.join('file_4_hw', 'home.txt')
-with open(path, 'w', encoding='Utf-8') as file:
 
-    file.write(diigits)
+digits = map(str, [random.randint(0, 9) for i in range(2500)])
+digits_str = ''.join(digits)
+path = os.path.join('file_4_hw', 'home.txt')
+
+with open(path, 'w', encoding='Utf-8') as file:
+    file.write(digits_str)
+
+with open(path, 'r', encoding='Utf-8') as file:
+    tmp = file.read()
+
+print(tmp)
+
+import re
+
+i = 0
+j = str(i)+'*'
+maxx = []
+for i in range(10):
+    j = str(i) + '*'
+    temp = re.findall(j, tmp)
+    maxx.append((max(temp)))
+print(max(maxx, key=len))
