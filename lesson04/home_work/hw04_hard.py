@@ -42,6 +42,24 @@ number = """
 05886116467109405077541002256983155200055935729725
 71636269561882670428252483600823257530420752963450"""
 
+number_only = "".join(i for i in number if i.isdigit())
+number = number_only
+
+from functools import reduce
+import operator
+
+mult_num = []        # максимальное произведение
+mult = 0             # промежуточная переменная для поиска максимального произведения
+
+for i in range(len(number)-5):
+    mult = reduce(operator.mul, list(map(int, number[i:i+5])), 1)
+    mult_num.append(mult)
+
+maxx = max(mult_num)                            # максимальное произведение
+maxx_1_digit_index = 5 * mult_num.index(maxx)   # позиция первой цифры числа с максимальным произведением. +1 не добавляем, так как индексация идет с 0
+print(maxx)
+print(maxx_1_digit_index)
+
 
 # Задание-3 (Ферзи):
 # Известно, что на доске 8×8 можно расставить 8 ферзей так, чтобы они не били
