@@ -13,3 +13,32 @@
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
+import sys
+# from Storage.Projects.Python_lessons_basic.lesson05.home_work.hw05_easy import *
+from hw05_easy import *
+
+while True:
+    choice = input(
+        """Что вы хотите сделать? \n
+        1. Перейти в папку \n
+        2. Просмотреть содержимое текущей папки \n
+        3. Удалить папку \n
+        4. Создать папку \n
+        
+        Для выхода из утилиты введите '0'\n
+        \n
+        """
+    )
+    if choice == '1':
+        change_dir()
+    elif choice == '2':
+        list_files()
+    elif choice == '3':
+        delete_dir()
+    elif choice == '4':
+        make_dir()
+    elif choice == '0':
+        break
+
+sys.exit()
+
