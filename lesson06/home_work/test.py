@@ -73,3 +73,5 @@ school.school_class.append([SchoolClass(itm) for itm in s_classes])
 humans = [Human(name=random.choice(names), surname=random.choice(surnames) for _ in range(0,8)]
 
 teachers = [Teacher(subject=random.choice(subject_list), name=random.choice(names), surname=random.choice(surnames)) for _ in range(0,6)]
+
+commit
