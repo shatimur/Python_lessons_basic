@@ -10,3 +10,34 @@
 # С использованием классов.
 # Реализуйте классы сотрудников так, чтобы на вход функции-конструктора
 # каждый работник получал строку из файла
+
+class Staff:
+
+    def __init__(self, name, surname, full_salary, hours_worked):
+        self.name = name
+        self.surname = surname
+        self.full_salary = full_salary
+        self.hours_worked = hours_worked
+
+
+class Foreman(Staff):
+
+    def __init__(self, post, name, surname, full_salary, hours_worked):
+        self.post = post
+        Staff.__init__(self, name, surname, full_salary, hours_worked)
+
+
+class Carpenter(Staff):
+
+    def __init__(self, hours_to_work, name, surname, full_salary, hours_worked):
+        self.hours_to_work = hours_to_work
+        Staff.__init__(self, name, surname, full_salary, hours_worked)
+
+
+class Chief(Staff):
+
+
+
+
+class Worker(Staff):
+    pass
