@@ -16,46 +16,60 @@
 # 4. Узнать ФИО родителей указанного ученика
 # 5. Получить список всех Учителей, преподающих в указанном классе
 
-
-
-# Школа
-# Класс
-# Предмет
-# Учитель
-# Студент
-# Хуман
-# Учитель, студент наследуется от  хуман
-# Школа содержит атрибут классы
-# Класс содержит атрибуты: преподаватели , ученики
-# Учитель содержит атрибут предмет
-
-class School:
-    def __init__(self, classes):
-        self.classes = classes
-
-class Class_room:
-    def __init__(self, class_name):
-        self.class_name = class_name
-        self.teachers = []
-        self.students = []
-        School.classes += 1
-
-class Subject:
-    def __init__(self, teachers):
-        self.teachers = teachers
+import random
 
 class Human:
-    def __init__(self, full_name):
-        self.name = self.full_name.split()[0]
-        self.surname = self.full_name.split()[1]
 
-class Student(Human):
-    def __init__(self, full_name, class_room, subjects):
-        Human.__init__(self, full_name)
-        self.class_room = class_room
-        self.subjects = subjects
+    def __init__(self, name, surname, father=None, mother=None):
+        self.name = name
+        self.surname = surname
+        self.father = father
+        self.mother = mother
+
 
 class Teacher(Human):
-    def __init__(self, full_name, subject):
-        Human.__init__(self, full_name)
+
+    def __init__(self, subject, name, surname, father=None, mother=None):
         self.subject = subject
+        Human.__init__(self, name=name, surname=surname, father=father, mother=mother)
+
+
+class Student(Human):
+
+    def __init__(self, name, surname, father=None, mother=None, school_class=None):
+        self.school_class = school_class
+        Human.__init__(self, name=name, surname=surname, father=father, mother=mother)
+
+
+class Subject:
+
+    def __init__(self, name):
+        self.name = name
+
+
+class SchoolClass:
+
+    def __init__(self):
+        self.teachers = []
+        self.students = []
+
+
+class School:
+
+    def __init__(self):
+        self.school_class = []
+
+
+names = ["Иван", "Филипп", "Анатолий", "Анна", "Мария", "Тамара"]
+surnames = [""]
+
+s_classes = ['5A', '6B', '7C', '8D']
+
+subject_list = [Subject(itm) for itm in ['математика', 'геометрия', 'ин-яз', 'физ-ра', 'информатика']]
+school = School()
+
+school.school_class.append([SchoolClass(itm) for itm in s_classes])
+
+humans = [Human(name=random.choice(names), surname=random.choice(surnames) for _ in range(0,8)]
+
+teachers = [Teacher(subject=random.choice(subject_list), name=random.choice(names), surname=random.choice(surnames)) for _ in range(0,6)]
