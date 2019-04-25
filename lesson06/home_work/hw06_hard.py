@@ -11,15 +11,20 @@
 # Реализуйте классы сотрудников так, чтобы на вход функции-конструктора
 # каждый работник получал строку из файла
 
+
+import os
+
+workers_file = os.path.join('data', 'workers')
+hours_file = os.path.join('data', 'hours_of')
+
 class Staff:
 
-    def __init__(self, post, name, surname, full_salary, hours_worked, hours_to_work):
-        self.post = post
-        self.name = name
-        self.surname = surname
-        self.full_salary = full_salary
-        self.hours_worked = hours_worked
-        self.hours_to_work = hours_to_work
+    def __init__(self, worker_data):
+        worker_data = worker_data.split()
+        self.name = worker_data[0]
+        self.surname = worker_data[1]
+        self.full_salary = worker_data[2]
+        self.post = worker_data[3]
 
 
 class SalaryToPay:
