@@ -13,31 +13,17 @@
 
 class Staff:
 
-    def __init__(self, name, surname, full_salary, hours_worked):
+    def __init__(self, post, name, surname, full_salary, hours_worked, hours_to_work):
+        self.post = post
         self.name = name
         self.surname = surname
         self.full_salary = full_salary
         self.hours_worked = hours_worked
-
-
-class Foreman(Staff):
-
-    def __init__(self, post, name, surname, full_salary, hours_worked):
-        self.post = post
-        Staff.__init__(self, name, surname, full_salary, hours_worked)
-
-
-class Carpenter(Staff):
-
-    def __init__(self, hours_to_work, name, surname, full_salary, hours_worked):
         self.hours_to_work = hours_to_work
-        Staff.__init__(self, name, surname, full_salary, hours_worked)
 
 
-class Chief(Staff):
+class SalaryToPay:
 
-
-
-
-class Worker(Staff):
     pass
+
+
