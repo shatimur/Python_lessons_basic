@@ -82,7 +82,7 @@ def factory_salary(lst):    # узнать общий фонд оплаты тр
     return common_salary
 
 
-
+#
 # a = workers_lst[1].calculate_salary
 # print(a)
 # print(factory_salary(workers_lst))
@@ -115,7 +115,7 @@ class Staff:
         self.post = worker_data[3]
         self.hours_rule = int(worker_data[4])
 
-    @property
+    @property           # узнать количество отработанных часов для определенного работника
     def hours_worked(self):
         hours_worked = 0
         with open(hours_file, 'r', encoding='UTF-8') as f:
